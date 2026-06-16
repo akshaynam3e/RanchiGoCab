@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RanchiGoCab - Escape the City, Embrace Nature</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">Ranchi<span>GoCab</span></div>
+        <a href="admin.html" class="admin-link-btn"><i class="fa-solid fa-user-gear"></i> Admin Portal</a>
+    </header>
+
+    <section class="hero">
+        <h1>Explore Jharkhand with RanchiGoCab</h1>
+        <p>Premium tour packages tailored just for you. Escape the city, embrace nature.</p>
+    </section>
+
+    <main class="container">
+        <h2 class="section-title">Our Featured Tour Packages</h2>
+        <div id="packages-grid" class="packages-grid">
+            <div class="loading">Loading amazing packages...</div>
+        </div>
+    </main>
+
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modal-package-title">Book Your Tour</h2>
+            
+            <div class="route-tracker-container">
+                <p class="tracker-label"><strong>Tour Route & Stoppages:</strong></p>
+                <div id="modal-route-line" class="route-line-wrapper">
+                    </div>
+            </div>
+
+            <form id="booking-form">
+                <input type="hidden" id="form-package-name">
+                
+                <div class="form-group">
+                    <label for="passenger-count">Number of Travelers:</label>
+                    <input type="number" id="passenger-count" min="1" value="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="ride-type">Ride Type:</label>
+                    <select id="ride-type" required>
+                        <option value="Round Trip">Round Trip</option>
+                        <option value="One Way">One Way Trip</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="parking-option">Parking Preference:</label>
+                    <select id="parking-option" required>
+                        <option value="with Parking">With Toll & Parking</option>
+                        <option value="without Parking">Without Parking</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-calculate">Confirm Selections</button>
+            </form>
+
+            <div id="action-buttons-container" class="action-buttons hidden">
+                <p class="action-heading">Connect with us to finalize booking:</p>
+                <div class="btn-group">
+                    <a id="whatsapp-btn" href="#" target="_blank" class="action-btn whatsapp-color">
+                        <i class="fa-brands fa-whatsapp"></i> Chat via WhatsApp
+                    </a>
+                    <a id="call-btn" href="#" class="action-btn call-color">
+                        <i class="fa-solid fa-phone"></i> Call Agency Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

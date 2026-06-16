@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RanchiGoCab - Secured Control Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-body">
+
+    <div id="admin-shield-overlay" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#f0f2f5; z-index:9999; display:flex; justify-content:center; align-items:center; font-weight:600;">
+        Verifying Credentials...
+    </div>
+
+    <header class="admin-header">
+        <div class="logo">Ranchi<span>GoCab</span> Control</div>
+        <div class="header-controls">
+            <button id="admin-logout-btn" class="admin-link-btn" style="cursor: pointer; border: none;"><i class="fa-solid fa-sign-out-alt"></i> Logout</button>
+            <a href="index.html" class="admin-link-btn"><i class="fa-solid fa-arrow-left"></i> Back to Site</a>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <section class="admin-box">
+            <h2><i class="fa-solid fa-plus"></i> Create New Tour Package</h2>
+            <form id="add-package-form">
+                <div class="form-group">
+                    <label>Package Title (e.g., Ranchi to Netarhat):</label>
+                    <input type="text" id="admin-title" placeholder="Ranchi to Netarhat" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Price (₹):</label>
+                        <input type="number" id="admin-price" placeholder="8000" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Duration:</label>
+                        <input type="text" id="admin-duration" placeholder="3 Days / 2 Nights" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Stoppages / Route Stops (Comma Separated):</label>
+                    <input type="text" id="admin-stops" placeholder="Ranchi, Sunset Point, Netarhat School, Ranchi" required>
+                </div>
+                <div class="form-group">
+                    <label>Package Image URL (Optional):</label>
+                    <input type="url" id="admin-image" placeholder="https://example.com/image.jpg">
+                </div>
+                <button type="submit" class="btn-submit">Publish Package</button>
+            </form>
+        </section>
+
+        <section class="admin-box">
+            <h2><i class="fa-solid fa-chart-line"></i> Live Booking Intent Logs</h2>
+            <div class="table-responsive">
+                <table class="logs-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Package</th>
+                            <th>Travelers</th>
+                            <th>Trip Type</th>
+                            <th>Parking</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logs-tbody">
+                        <tr>
+                            <td colspan="5" class="text-center">Loading updates...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

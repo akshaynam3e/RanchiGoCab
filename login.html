@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RanchiGoCab - Admin Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-body">
+
+    <header>
+        <div class="logo">Ranchi<span>GoCab</span></div>
+        <a href="index.html" class="admin-link-btn"><i class="fa-solid fa-arrow-left"></i> Main Site</a>
+    </header>
+
+    <div class="container" style="max-width: 420px; margin-top: 80px;">
+        <div class="admin-box" style="text-align: center;">
+            <h2><i class="fa-solid fa-lock"></i> Admin Gate</h2>
+            <p style="margin-bottom: 25px; font-size: 0.9rem; color: #666;">Access restricted to authorized personnel.</p>
+            
+            <form id="admin-login-form">
+                <div class="form-group" style="text-align: left;">
+                    <label>Email Address</label>
+                    <input type="email" id="login-email" placeholder="example@gmail.com" required>
+                </div>
+                <div class="form-group" style="text-align: left;">
+                    <label>Password</label>
+                    <input type="password" id="login-password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-submit" style="background-color: #0c3e26;">Verify Identity</button>
+            </form>
+            <p id="auth-error-msg" style="color: #d32f2f; margin-top: 15px; font-weight: 600; font-size: 0.9rem;" class="hidden"></p>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
