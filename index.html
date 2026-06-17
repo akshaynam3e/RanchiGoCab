@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RanchiGoCab – Explore Jharkhand</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="site-header">
+    <div class="header-inner">
+      <div class="logo">Ranchi<span>GoCab</span></div>
+      <nav class="header-nav">
+        <a href="#packages">Packages</a>
+        <a href="#why-us">Why Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Jharkhand's Trusted Travel Partner</p>
+      <h1>Where Roads Lead<br/>to Waterfalls</h1>
+      <p class="hero-sub">Hand-picked tour packages from Ranchi. Real cabs, real drivers, real experiences.</p>
+      <a href="#packages" class="hero-cta">Explore Packages <i class="fa-solid fa-arrow-down"></i></a>
+    </div>
+    <div class="hero-scroll-hint">scroll</div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="why-us" class="why-us">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-item">
+          <i class="fa-solid fa-shield-halved"></i>
+          <h4>Verified Drivers</h4>
+          <p>Every driver is background-checked and locally experienced.</p>
+        </div>
+        <div class="why-item">
+          <i class="fa-solid fa-indian-rupee-sign"></i>
+          <h4>Fixed Pricing</h4>
+          <p>No surprise charges. Price shown is price paid, toll & parking included.</p>
+        </div>
+        <div class="why-item">
+          <i class="fa-solid fa-headset"></i>
+          <h4>24/7 Support</h4>
+          <p>Direct WhatsApp line to our team — before, during and after your trip.</p>
+        </div>
+        <div class="why-item">
+          <i class="fa-solid fa-camera"></i>
+          <h4>Local Knowledge</h4>
+          <p>Drivers double as guides — they know every hidden viewpoint.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section id="packages" class="packages-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Curated Journeys</p>
+        <h2>Featured Tour Packages</h2>
+      </div>
+      <div id="packages-grid" class="packages-grid">
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <p>Finding the best packages…</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="logo" style="color:#FAF7F2">Ranchi<span>GoCab</span></div>
+      <p>© 2025 RanchiGoCab. Ranchi, Jharkhand.</p>
+      <a href="tel:+916280695945" class="footer-call"><i class="fa-solid fa-phone"></i> +91 62806 95945</a>
+    </div>
+  </footer>
+
+  <!-- BOOKING MODAL -->
+  <div id="booking-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal-panel">
+      <button class="modal-close" id="modal-close-btn" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+
+      <div class="modal-hero-img" id="modal-hero-img">
+        <div class="modal-route-badge" id="modal-route-badge"></div>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-eyebrow" id="modal-duration-badge"></p>
+        <h2 id="modal-title">Book Package</h2>
+        <p class="modal-price" id="modal-price"></p>
+
+        <!-- Stoppage Timeline -->
+        <div class="stoppage-section" id="stoppage-section">
+          <p class="stoppage-label"><i class="fa-solid fa-map-pin"></i> Route Stoppages</p>
+          <div id="stoppage-timeline" class="stoppage-timeline"></div>
+        </div>
+
+        <!-- Photo Gallery -->
+        <div class="gallery-strip" id="gallery-strip"></div>
+
+        <!-- Booking Form -->
+        <form id="booking-form" class="booking-form" novalidate>
+          <input type="hidden" id="f-package-id" />
+          <input type="hidden" id="f-package-name" />
+          <input type="hidden" id="f-from" />
+          <input type="hidden" id="f-to" />
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="f-travelers">Travelers</label>
+              <input type="number" id="f-travelers" min="1" max="20" value="2" required />
+            </div>
+            <div class="form-field">
+              <label for="f-trip-type">Trip Type</label>
+              <select id="f-trip-type" required>
+                <option value="one-way">One Way  (→)</option>
+                <option value="round-trip" selected>Round Trip  (→←)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="f-name">Your Name</label>
+            <input type="text" id="f-name" placeholder="e.g. Ravi Kumar" required />
+          </div>
+
+          <div class="form-field">
+            <label for="f-phone">Phone Number</label>
+            <input type="tel" id="f-phone" placeholder="+91 XXXXX XXXXX" required />
+          </div>
+
+          <div class="form-field">
+            <label for="f-date">Travel Date</label>
+            <input type="date" id="f-date" required />
+          </div>
+
+          <button type="submit" class="btn-confirm">
+            Get Booking Code <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
+
+        <!-- Post-submit Actions -->
+        <div id="booking-result" class="booking-result hidden">
+          <div class="booking-code-box">
+            <p class="code-label">Your Booking Code</p>
+            <div class="code-value" id="display-code"></div>
+            <p class="code-note">Share this code for 5% partner commission</p>
+          </div>
+          <div class="action-btns">
+            <a id="btn-whatsapp" href="#" target="_blank" class="action-btn wa-btn">
+              <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+            </a>
+            <a id="btn-call" href="tel:+916280695945" class="action-btn call-btn">
+              <i class="fa-solid fa-phone"></i> Call Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

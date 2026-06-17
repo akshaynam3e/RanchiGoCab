@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RanchiGoCab – Control Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="admin-page">
+
+  <!-- Shield blocks the page until auth verified -->
+  <div id="admin-shield" class="admin-shield">
+    <div class="shield-inner">
+      <div class="spinner"></div>
+      <p>Verifying credentials…</p>
+    </div>
+  </div>
+
+  <header class="admin-header">
+    <div class="header-inner">
+      <div class="logo">Ranchi<span>GoCab</span> <span class="admin-badge">Admin</span></div>
+      <div class="header-nav">
+        <a href="index.html" class="nav-admin-btn"><i class="fa-solid fa-globe"></i> View Site</a>
+        <button id="logout-btn" class="nav-admin-btn danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- STATS ROW -->
+  <div class="admin-wrap">
+    <div class="stats-row" id="stats-row">
+      <div class="stat-card"><div class="stat-num" id="stat-packages">–</div><div class="stat-label">Active Packages</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-bookings">–</div><div class="stat-label">Booking Intents</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-today">–</div><div class="stat-label">Today's Inquiries</div></div>
+    </div>
+
+    <div class="admin-grid">
+
+      <!-- LEFT: Create Package -->
+      <section class="admin-box">
+        <h2 class="admin-box-title"><i class="fa-solid fa-plus-circle"></i> Create Tour Package</h2>
+
+        <form id="create-package-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label>From City</label>
+              <input type="text" id="p-from" placeholder="Ranchi" required />
+            </div>
+            <div class="form-field">
+              <label>To City</label>
+              <input type="text" id="p-to" placeholder="Netarhat" required />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label>Package Title</label>
+            <input type="text" id="p-title" placeholder="Ranchi to Netarhat – The Queen of Chotanagpur" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label>Price (₹)</label>
+              <input type="number" id="p-price" placeholder="8500" min="0" required />
+            </div>
+            <div class="form-field">
+              <label>Days</label>
+              <input type="number" id="p-days" placeholder="3" min="1" required />
+            </div>
+            <div class="form-field">
+              <label>Nights</label>
+              <input type="number" id="p-nights" placeholder="2" min="0" required />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label>Stoppages <span class="hint">(comma separated)</span></label>
+            <input type="text" id="p-stops" placeholder="Ranchi, Sunset Point, Betla, Netarhat" required />
+          </div>
+
+          <div class="form-field">
+            <label>Package Photos <span class="hint">(paste image URLs, one per line, max 5)</span></label>
+            <textarea id="p-photos" rows="4" placeholder="https://example.com/photo1.jpg&#10;https://example.com/photo2.jpg"></textarea>
+          </div>
+
+          <div class="form-field">
+            <label>Package Description</label>
+            <textarea id="p-desc" rows="3" placeholder="Explore the mesmerizing Palamu forest..."></textarea>
+          </div>
+
+          <div class="form-field">
+            <label>Highlights <span class="hint">(comma separated)</span></label>
+            <input type="text" id="p-highlights" placeholder="Sunset Point, Betla National Park, Lodh Falls" />
+          </div>
+
+          <button type="submit" class="btn-publish">
+            <i class="fa-solid fa-paper-plane"></i> Publish Package
+          </button>
+        </form>
+      </section>
+
+      <!-- RIGHT: Booking Logs -->
+      <section class="admin-box">
+        <div class="box-header-row">
+          <h2 class="admin-box-title"><i class="fa-solid fa-chart-line"></i> Booking Intents</h2>
+          <div class="filter-row">
+            <input type="text" id="log-search" placeholder="Search by code or name…" class="log-search" />
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="logs-table" id="logs-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Package</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Travelers</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody id="logs-tbody">
+              <tr><td colspan="8" class="table-empty">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <!-- PACKAGES MANAGEMENT -->
+    <section class="admin-box" style="margin-top:0">
+      <div class="box-header-row">
+        <h2 class="admin-box-title"><i class="fa-solid fa-suitcase"></i> Manage Packages</h2>
+      </div>
+      <div id="manage-packages-grid" class="manage-grid">
+        <p class="table-empty">Loading packages…</p>
+      </div>
+    </section>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

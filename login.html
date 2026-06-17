@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RanchiGoCab – Admin Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="auth-page">
+
+  <div class="auth-container">
+    <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Site</a>
+    <div class="auth-card">
+      <div class="auth-logo">Ranchi<span>GoCab</span></div>
+      <h2 class="auth-title"><i class="fa-solid fa-lock"></i> Admin Access</h2>
+      <p class="auth-sub">Restricted to authorized personnel only.</p>
+
+      <form id="admin-login-form" class="auth-form">
+        <div class="form-field">
+          <label>Email Address</label>
+          <input type="email" id="login-email" placeholder="admin@ranchigocab.com" required />
+        </div>
+        <div class="form-field">
+          <label>Password</label>
+          <input type="password" id="login-password" placeholder="••••••••" required />
+        </div>
+        <p id="auth-error" class="auth-error hidden"></p>
+        <button type="submit" class="btn-auth">Verify Identity</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
