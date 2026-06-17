@@ -11,6 +11,38 @@ import { getFirestore, collection, addDoc,
 import { getAuth, signInWithEmailAndPassword,
          signOut, onAuthStateChanged }            from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
+const DEFAULT_PACKAGE = {
+  id: "default-netarhat",
+  from: "Ranchi",
+  to: "Netarhat",
+  title: "Ranchi to Netarhat – Queen of Chotanagpur",
+  price: 8000,
+  days: 3,
+  nights: 2,
+  description: "Escape the city and embrace nature. Explore the Queen of Chotanagpur with hotel stay, meals (Breakfast & Dinner), sightseeing as per itinerary, and all transfers & toll parking included.",
+  stops: ["Ranchi", "Sunset Point", "Sunrise Point", "Netarhat School", "Koel View Point", "Magnolia Point", "Netarhat"],
+  highlights: ["Queen of Chotanagpur", "Cool Climate & Scenic Views", "Family & Friends", "Bonfire on Request"],
+  includes: ["Pick-up & Drop (Ranchi)", "Hotel Stay (2 Nights)", "Meals (Breakfast & Dinner)", "Sightseeing as per Itinerary", "All Transfer & Toll Parking"],
+  itinerary: [
+    { day: 1, title: "Ranchi to Netarhat", desc: "Departure from Ranchi. Sightseeing: Sunset Point." },
+    { day: 2, title: "Netarhat Local Sightseeing", desc: "Sunrise Point, Netarhat School, Koel View Point, Magnolia Point." },
+    { day: 3, title: "Netarhat to Ranchi", desc: "Check out after breakfast and drop back to Ranchi." },
+  ],
+  photos: [
+    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
+    "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80",
+    "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80",
+    "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80",
+  ],
+  isDefault: true,
+};
+const PAGE = (() => {
+  const path = window.location.pathname;
+  if (path.includes("admin.html")) return "admin";
+  if (path.includes("login.html")) return "login";
+  return "index";
+})();
+
 // ── Firebase Config ──────────────────────────────────────────
 const firebaseConfig = {
   apiKey:            "AIzaSyBx3wvRzfJ4VszJ_jQTfWuzaW-BBBYHWlM",
@@ -57,45 +89,11 @@ function buildWAMsg(data) {
 }
 
 // ── Route Detector ───────────────────────────────────────────
-const PAGE = (() => {
-  const path = window.location.pathname;
-  if (path.includes("admin.html"))  return "admin";
-  if (path.includes("login.html"))  return "login";
-  return "index";
-})();
-
-if      (PAGE === "index") runPublicPage();
-else if (PAGE === "login") runLoginPage();
-else if (PAGE === "admin") runAdminPage();
 
 // =============================================================
 //  DEFAULT PACKAGE — Hardcoded, always visible
 // =============================================================
-const DEFAULT_PACKAGE = {
-  id:          "default-netarhat",
-  from:        "Ranchi",
-  to:          "Netarhat",
-  title:       "Ranchi to Netarhat – Queen of Chotanagpur",
-  price:       8000,
-  days:        3,
-  nights:      2,
-  description: "Escape the city and embrace nature. Explore the Queen of Chotanagpur with hotel stay, meals (Breakfast & Dinner), sightseeing as per itinerary, and all transfers & toll parking included.",
-  stops:       ["Ranchi", "Sunset Point", "Sunrise Point", "Netarhat School", "Koel View Point", "Magnolia Point", "Netarhat"],
-  highlights:  ["Queen of Chotanagpur", "Cool Climate & Scenic Views", "Family & Friends", "Bonfire on Request"],
-  includes:    ["Pick-up & Drop (Ranchi)", "Hotel Stay (2 Nights)", "Meals (Breakfast & Dinner)", "Sightseeing as per Itinerary", "All Transfer & Toll Parking"],
-  itinerary: [
-    { day: 1, title: "Ranchi to Netarhat",          desc: "Departure from Ranchi. Sightseeing: Sunset Point." },
-    { day: 2, title: "Netarhat Local Sightseeing",  desc: "Sunrise Point, Netarhat School, Koel View Point, Magnolia Point." },
-    { day: 3, title: "Netarhat to Ranchi",          desc: "Check out after breakfast and drop back to Ranchi." },
-  ],
-  photos: [
-    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
-    "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80",
-    "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80",
-    "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80",
-  ],
-  isDefault:   true,
-};
+
 
 // =============================================================
 //  PAGE 1 — PUBLIC INDEX
@@ -148,13 +146,11 @@ function runPublicPage() {
   // ── Step 2: Load extra packages from Firestore ────────────
   try {
     onSnapshot(
-      query(collection(db, "packages"), orderBy("createdAt", "desc")),
+      query(collection(db, "packages")), // ✅ FIXED
       (snap) => {
-        // Remove old Firebase cards, keep default
         grid.querySelectorAll(".pkg-card:not(.default-card)").forEach(c => c.remove());
         snap.forEach((d) => renderCard(d.id, d.data()));
-      },
-      (err) => console.warn("Firestore error:", err)
+      }
     );
   } catch(e) {
     console.warn("Firebase unavailable, showing default only.");
