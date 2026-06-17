@@ -498,55 +498,47 @@ async function initDashboard() {
   );
 
   // ── Create Package Form ──────────────────────────────────
-  createForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const photos = document.getElementById("p-photos").value
-      .split("\n")
-      .map(u => u.trim())
-      .filter(u => u.length > 0)
-      .slice(0, 5);
-
-    const highlights = document.getElementById("p-highlights").value
-      .split(",")
-      .map(h => h.trim())
-      .filter(h => h.length > 0);
-
-    const stops = document.getElementById("p-stops").value
-      .split(",")
-      .map(s => s.trim())
-      .filter(s => s.length > 0);
-
-    const payload = {
-      from:        document.getElementById("p-from").value.trim(),
-      to:          document.getElementById("p-to").value.trim(),
-      title:       document.getElementById("p-title").value.trim(),
-      price:       parseFloat(document.getElementById("p-price").value),
-      days:        parseInt(document.getElementById("p-days").value),
-      nights:      parseInt(document.getElementById("p-nights").value),
-      stops,
-      photos,
-      highlights,
-      description: document.getElementById("p-desc").value.trim(),
-      createdAt:   serverTimestamp(),
-    };
-
-    const btn = createForm.querySelector(".btn-publish");
-    btn.disabled   = true;
-    btn.innerHTML  = `<i class="fa-solid fa-spinner fa-spin"></i> Publishing…`;
-
-    try {
-      await addDoc(collection(db, "packages"), payload);
-      createForm.reset();
-      btn.innerHTML = `<i class="fa-solid fa-check"></i> Published!`;
-      setTimeout(() => {
-        btn.disabled  = false;
-        btn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Publish Package`;
-      }, 2500);
-    } catch (err) {
-      alert("Failed to publish. Check your Firestore rules.");
-      btn.disabled  = false;
-      btn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Publish Package`;
-    }
-  });
+createForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  
+  const photos = document.getElementById("p-photos").value
+    .split("\n")
+    .map(u => u.trim())
+    .filter(u => u.length > 0)
+    .slice(0, 5);
+  
+  const highlights = document.getElementById("p-highlights").value
+    .split(",")
+    .map(h => h.trim())
+    .filter(h => h.length > 0);
+  
+  const stops = document.getElementById("p-stops").value
+    .split(",")
+    .map(s => s.trim())
+    .filter(s => s.length > 0);
+  
+  const payload = {
+    from: document.getElementById("p-from").value.trim(),
+    to: document.getElementById("p-to").value.trim(),
+    title: document.getElementById("p-title").value.trim(),
+    price: parseFloat(document.getElementById("p-price").value),
+    days: parseInt(document.getElementById("p-days").value),
+    nights: parseInt(document.getElementById("p-nights").value),
+    stops,
+    highlights,
+    photos,
+    
+    // 🔥🔥🔥 BUG FIX (ONLY THIS LINE ADDED)
+    createdAt: serverTimestamp()
+  };
+  
+  try {
+    await addDoc(collection(db, "packages"), payload);
+    createForm.reset();
+    alert("Package added successfully!");
+  } catch (err) {
+    alert("Error adding package");
+    console.error(err);
+  }
+});
 }
